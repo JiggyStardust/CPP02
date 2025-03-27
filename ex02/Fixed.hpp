@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:08:38 by sniemela          #+#    #+#             */
-/*   Updated: 2025/03/26 18:22:13 by sniemela         ###   ########.fr       */
+/*   Updated: 2025/03/27 10:46:39 by saaraniemel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,24 @@ class Fixed
 		float toFloat( void ) const; // member function that converts fixed point value to float
 		int toInt(void ) const; // member function that converts fixed point value to int
 		
-		std::bool operator>(const Fixed &other) const;
-		std::bool operator<(const Fixed &other) const;
-		std::bool operator>=(const Fixed &other) const;
-		std::bool operator<=(const Fixed &other) const;
-		std::bool operator==(const Fixed &other) const;
-		std::bool operator!=(const Fixed &other) const;
+		bool operator>(const Fixed &other) const;
+		bool operator<(const Fixed &other) const;
+		bool operator>=(const Fixed &other) const;
+		bool operator<=(const Fixed &other) const;
+		bool operator==(const Fixed &other) const;
+		bool operator!=(const Fixed &other) const;
 
 		Fixed operator +(const Fixed &other) const;
 		Fixed operator -(const Fixed &other) const;
 		Fixed operator *(const Fixed &other) const;
 		Fixed operator /(const Fixed &other) const;
 
+		Fixed& operator ++();
+		Fixed& operator --();
+		Fixed operator ++(int);
+		Fixed operator --(int);
+
+		
 		// Add these four public overloaded member functions to your class:
 		// • A static member function min that takes as parameters two references on fixed-point
 		// numbers, and returns a reference to the smallest one.

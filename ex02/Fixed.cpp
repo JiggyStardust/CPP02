@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:08:45 by sniemela          #+#    #+#             */
-/*   Updated: 2025/03/26 18:08:48 by sniemela         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:00:01 by saaraniemel      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 
 Fixed::Fixed( void ) : m_fixed(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+//	std::cout << "Default constructor called" << std::endl;
 }
 Fixed::Fixed( const int value)
 {
-	std::cout << "Int constructor called" << std::endl;
+//	std::cout << "Int constructor called" << std::endl;
 	m_fixed = value << m_bits;
 }
 
 Fixed::Fixed( const float value) 
 {
-	std::cout << "Float constructor called" << std::endl;
+//	std::cout << "Float constructor called" << std::endl;
 	m_fixed = roundf(value * (1 << m_bits));
 }
 
 Fixed::Fixed( const Fixed& orig)
 {
-	std::cout << "Copy constructor called" << std::endl;
+//	std::cout << "Copy constructor called" << std::endl;
 	*this = orig;
 }
 
@@ -39,7 +39,7 @@ Fixed& Fixed::operator = ( const Fixed& orig)
 {
 	if (this != &orig)
 	{
-		std::cout << "Copy assignment operator called" << std::endl;
+	//	std::cout << "Copy assignment operator called" << std::endl;
 		m_fixed = orig.getRawBits();
 	}
 	return (*this);
@@ -47,7 +47,7 @@ Fixed& Fixed::operator = ( const Fixed& orig)
 
 Fixed::~Fixed( void ) 
 {
-	std::cout << "Destructor called" << std::endl;
+	//std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits( void ) const
@@ -80,4 +80,98 @@ std::ostream & operator<<(std::ostream &out, const Fixed &number)
 {
 	out << number.toFloat();
 	return (out);
+}
+
+bool Fixed::operator>(const Fixed &other) const
+{
+	if (this->m_fixed > other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+bool Fixed::operator<(const Fixed &other) const
+{
+	if (this->m_fixed < other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+bool Fixed::operator<=(const Fixed &other) const
+{
+	if (this->m_fixed <= other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+bool Fixed::operator>=(const Fixed &other) const
+{
+	if (this->m_fixed >= other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+bool Fixed::operator==(const Fixed &other) const
+{
+	if (this->m_fixed == other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+bool Fixed::operator!=(const Fixed &other) const
+{
+	if (this->m_fixed != other.m_fixed)
+		return (true);
+	else
+		return (false);
+}
+
+Fixed Fixed::operator +(const Fixed &other) const
+{
+	return Fixed(this->toFloat()+ other.toFloat());
+}
+
+Fixed Fixed::operator -(const Fixed &other) const
+{
+	return Fixed(this->toFloat() - other.toFloat());	
+}
+
+Fixed Fixed::operator *(const Fixed &other) const
+{
+	return Fixed(this->toFloat() * other.toFloat());
+}
+
+Fixed Fixed::operator /(const Fixed &other) const
+{
+	return Fixed(this->toFloat() / other.toFloat());
+}
+
+Fixed& Fixed::operator ++()
+{
+	++m_fixed;
+	return *this;
+}
+
+Fixed& Fixed::operator --()
+{
+	--m_fixed;
+	return *this;
+}
+
+Fixed Fixed::operator ++(int)
+{
+	Fixed temp = *this;
+	m_fixed++;
+	return temp;
+}
+
+Fixed Fixed::operator --(int)
+{
+	Fixed temp = *this;
+	m_fixed--;
+	return temp;
 }
