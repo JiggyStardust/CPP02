@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
+/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:08:38 by sniemela          #+#    #+#             */
-/*   Updated: 2025/03/27 10:46:39 by saaraniemel      ###   ########.fr       */
+/*   Updated: 2025/03/27 14:49:28 by sniemela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Fixed
 		Fixed( void ); // default constructor, not sure about parameter
 		Fixed( const int ); // default constructor with const int param
 		Fixed( const float ); // default constructor with const float param
-		Fixed( const Fixed& orig); // copy constructor? 
+		Fixed( const Fixed& orig); // copy constructor
 		Fixed& operator = ( const Fixed& orig);	// copy assignment operator overload
 		~Fixed( void ); // a destructor
 		
@@ -50,16 +50,10 @@ class Fixed
 		Fixed operator ++(int);
 		Fixed operator --(int);
 
-		
-		// Add these four public overloaded member functions to your class:
-		// • A static member function min that takes as parameters two references on fixed-point
-		// numbers, and returns a reference to the smallest one.
-		// • A static member function min that takes as parameters two references to constant
-		// fixed-point numbers, and returns a reference to the smallest one.
-		// • A static member function max that takes as parameters two references on fixed-point
-		// numbers, and returns a reference to the greatest one.
-		// • A static member function max that takes as parameters two references to constant
-		// fixed-point numbers, and returns a reference to the greatest one.
+		static const Fixed& max(const Fixed &a, const Fixed &b);
+		static Fixed& max(Fixed &a, Fixed &b);
+		static const Fixed& min(const Fixed &a, const Fixed &b);
+		static Fixed& min(Fixed &a, Fixed &b);
 };
 
 std::ostream & operator<<(std::ostream &out, const Fixed &number);

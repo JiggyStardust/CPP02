@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: saaraniemela <saaraniemela@student.42.f    +#+  +:+       +#+        */
+/*   By: sniemela <sniemela@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:08:45 by sniemela          #+#    #+#             */
-/*   Updated: 2025/03/27 11:00:01 by saaraniemel      ###   ########.fr       */
+/*   Updated: 2025/03/27 14:31:36 by sniemela         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,19 @@ std::ostream & operator<<(std::ostream &out, const Fixed &number)
 
 bool Fixed::operator>(const Fixed &other) const
 {
+	// std::cout << "> operator: this->: " << this->m_fixed << " other: " << other.m_fixed << std::endl;
 	if (this->m_fixed > other.m_fixed)
+	{
+		// std::cout << "> returns true\n";
 		return (true);
+	}
 	else
 		return (false);
 }
 
 bool Fixed::operator<(const Fixed &other) const
 {
+	// std::cout << "this->: " << this->m_fixed << " other: " << other.m_fixed << std::endl;
 	if (this->m_fixed < other.m_fixed)
 		return (true);
 	else
@@ -100,6 +105,7 @@ bool Fixed::operator<(const Fixed &other) const
 
 bool Fixed::operator<=(const Fixed &other) const
 {
+	// std::cout << "this->: " << this->m_fixed << " other: " << other.m_fixed << std::endl;
 	if (this->m_fixed <= other.m_fixed)
 		return (true);
 	else
@@ -108,6 +114,7 @@ bool Fixed::operator<=(const Fixed &other) const
 
 bool Fixed::operator>=(const Fixed &other) const
 {
+	// std::cout << "this->: " << this->m_fixed << " other: " << other.m_fixed << std::endl;
 	if (this->m_fixed >= other.m_fixed)
 		return (true);
 	else
@@ -116,6 +123,7 @@ bool Fixed::operator>=(const Fixed &other) const
 
 bool Fixed::operator==(const Fixed &other) const
 {
+	// std::cout << "this->: " << this->m_fixed << " other: " << other.m_fixed << std::endl;
 	if (this->m_fixed == other.m_fixed)
 		return (true);
 	else
@@ -174,4 +182,40 @@ Fixed Fixed::operator --(int)
 	Fixed temp = *this;
 	m_fixed--;
 	return temp;
+}
+
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
+{
+	std::cout << "in const max\n";
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed& Fixed::max(Fixed &a, Fixed &b)
+{
+	std::cout << "in max\n";
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
+{
+	std::cout << "in const min\n";
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+Fixed& Fixed::min(Fixed &a, Fixed &b)
+{
+	std::cout << "in min\n";
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }
